@@ -16,6 +16,8 @@ type Block struct {
 // NewBlock creates and returns Block
 func NewBlock(data string, prevBlockHash []byte) *Block {
 	block := &Block{time.Now().Unix(), []byte(data), prevBlockHash, []byte{}, 0}
+
+	// calculate the proof of work before get append into blockchain
 	pow := NewProofOfWork(block)
 	nonce, hash := pow.Run()
 
